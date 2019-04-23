@@ -3,8 +3,7 @@ Der Vokabeltrainer ein Programm, welches die Funktionen eines klassischem Worter
 
 ### Requirements
 Diese Anwendung basiert auf Java und benötigt daher mindestens eine aktuelle Java-Version (Java 8).
-Die Anwendung bringt selbst kein Wörterbuch (Datensatz) mit, kann aber jede Datei einlesen, die ein bestimmtes Format einhält (siehe Unten). Dazu bietet sich zum Beispiel der Datensatz der TU Chemnitz an, welches auch von der Seite dict.cc verwendet wird. Dieser Datensatz kann unter folgendem Link heruntergeladen werden (Link anklicken, Rechtsklick, Speichern unter...). Dabei reicht es aus, wenn sich das Wörterbuch im selben Ordner befindet, wie der Vokabeltrainer.
-[Download Wörterbuch](ftp://ftp.tu-chemnitz.de/pub/Local/urz/ding/de-en/de-en.txt)
+Die Anwendung bringt selbst kein Wörterbuch (Datensatz) mit, kann aber jede Datei einlesen, die ein bestimmtes Format einhält. Dazu bietet sich zum Beispiel der Datensatz der TU Chemnitz an, welches auch von der Seite dict.cc verwendet wird. Dieser Datensatz kann [hier](ftp://ftp.tu-chemnitz.de/pub/Local/urz/ding/de-en/de-en.txt) heruntergeladen werden (Link anklicken, Rechtsklick, Speichern unter...). Dabei reicht es aus, wenn sich das Wörterbuch im selben Ordner befindet, wie der Vokabeltrainer.
 Grunsätzlich eignet sich jeder Datensatz, welcher ein bestimmtes Format einhält. Wichtig dabei ist, dass in der Datei die Wörter zeilenweise gelistet sind und die Vokabeln, mit dem Deutsch beginnend, durch zwei Doppelpunkte ('::') voneinander getrennt sind. Es können jeweils auf der Deutschen sowie auf der Englischen Seite mehrere Synonyme vorhanden sein.
 
 ### Verwendung
