@@ -1,2 +1,15 @@
-nbproject/private/
+
+
+### NetBeans ###
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
 build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### Project ###
+dictionary.csv
+de-en.txt

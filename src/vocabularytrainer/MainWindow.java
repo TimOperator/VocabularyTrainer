@@ -5,7 +5,7 @@
  */
 package vocabularytrainer;
 
-import ServerConnection.MainServerConnector;
+import de.hamp_it.EasyuseServerConnector.MainServerConnector;
 import java.awt.Color;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -113,7 +113,7 @@ public class MainWindow extends javax.swing.JFrame {
         deleteVocButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Vokabeltrainer v1.2");
+        setTitle("Vokabeltrainer v1.3");
         setMinimumSize(new java.awt.Dimension(512, 330));
 
         dictionaryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Translator"));
@@ -510,8 +510,24 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void updateCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCheckButtonActionPerformed
         updateCheckButton.setEnabled(false);
-        String reply = MainServerConnector.checkForUpdates(this.getTitle());
-        JOptionPane.showMessageDialog(null, reply);
+        String message;
+        int currentVersionNo = MainServerConnector.getVersionNumber(this.getTitle());
+        String name = MainServerConnector.getProgramName(this.getTitle());
+        try {
+            int latestVersionNo = MainServerConnector.getLatestVersionNo(name, currentVersionNo);
+            if (currentVersionNo > latestVersionNo) {
+                message = "Diese Version ist noch nicht offiziell verfügbar.";
+            } else if (currentVersionNo == latestVersionNo) {
+                message = "Die aktuellste Version ist bereits installiert.";
+            } else {
+                message = "Es ist eine neue Version verfügbar!";
+            }
+        } catch (IOException ex) {
+            message = "Der Update-Service ist derzeit nicht verfügbar.";
+            System.out.println(message);
+            System.out.println(ex.toString());
+        }
+        JOptionPane.showMessageDialog(null, message);
         updateCheckButton.setEnabled(true);
     }//GEN-LAST:event_updateCheckButtonActionPerformed
 
