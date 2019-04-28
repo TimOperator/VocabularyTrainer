@@ -5,6 +5,7 @@
  */
 package de.hamp_it.vocabularytrainer;
 
+import java.util.ResourceBundle;
 import javax.swing.UIManager;
 
 /**
@@ -13,6 +14,7 @@ import javax.swing.UIManager;
  */
 public class VocabularyTrainer {
 
+    private static final ResourceBundle MESSAGE_STRINGS = ResourceBundle.getBundle("messages");
     /**
      * @param args the command line arguments
      */
@@ -20,11 +22,11 @@ public class VocabularyTrainer {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
-            System.out.println("Unable to use system layout. Use default layout.");
+            System.out.println(MESSAGE_STRINGS.getString("no_system_layout"));
         }
         String dictionaryFile = "de-en.txt";
         if (args.length >= 1) {
-            System.out.println("Dictionary file not set. Use de-en.txt");
+            System.out.println(MESSAGE_STRINGS.getString("use_default_dictionary"));
             dictionaryFile = args[0];
         }
         MainWindow mw = new MainWindow(dictionaryFile);

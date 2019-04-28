@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.ResourceBundle;
 import java.util.TreeMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -113,16 +114,17 @@ public class MainWindow extends javax.swing.JFrame {
         deleteVocButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Vokabeltrainer v1.3");
+        setTitle("Vokabeltrainer v1.4");
         setMinimumSize(new java.awt.Dimension(512, 330));
 
-        dictionaryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Translator"));
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("interfaces"); // NOI18N
+        dictionaryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("title_translator"))); // NOI18N
 
         languageButtonGroup.add(enRadioButton);
-        enRadioButton.setText("English");
+        enRadioButton.setText(bundle.getString("checkbox_english")); // NOI18N
 
         languageButtonGroup.add(deRadioButton);
-        deRadioButton.setText("German");
+        deRadioButton.setText(bundle.getString("checkbox_german")); // NOI18N
 
         inputTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -133,7 +135,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        translateButton.setText("Translate");
+        translateButton.setText(bundle.getString("button_translate")); // NOI18N
         translateButton.setEnabled(false);
         translateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,9 +143,9 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        translationLabel.setText("Übersetzung:");
+        translationLabel.setText(bundle.getString("label_translation_colon")); // NOI18N
 
-        saveButton.setText("Save to trainer -->");
+        saveButton.setText(bundle.getString("button_save_to_trainer")); // NOI18N
         saveButton.setEnabled(false);
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,7 +153,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        randomButton.setText("Random");
+        randomButton.setText(bundle.getString("button_random")); // NOI18N
         randomButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 randomButtonActionPerformed(evt);
@@ -178,9 +180,9 @@ public class MainWindow extends javax.swing.JFrame {
 
         languageButtonGroup.add(bothRadioButton);
         bothRadioButton.setSelected(true);
-        bothRadioButton.setText("Both");
+        bothRadioButton.setText(bundle.getString("checkbox_both")); // NOI18N
 
-        updateCheckButton.setText("Check for Updates");
+        updateCheckButton.setText(bundle.getString("button_check_updates")); // NOI18N
         updateCheckButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateCheckButtonActionPerformed(evt);
@@ -244,24 +246,24 @@ public class MainWindow extends javax.swing.JFrame {
 
         sideSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        trainerPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Trainer"));
+        trainerPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("title_trainer"))); // NOI18N
 
-        jLabel3.setText("Original:");
+        jLabel3.setText(bundle.getString("label_original_colon")); // NOI18N
 
         origLabel.setText("Word");
 
-        jLabel4.setText("Translate:");
+        jLabel4.setText(bundle.getString("label_translate_colon")); // NOI18N
 
-        transTextLabel.setText("Translation");
+        transTextLabel.setText(bundle.getString("label_translation")); // NOI18N
 
-        checkButton.setText("Check");
+        checkButton.setText(bundle.getString("button_check")); // NOI18N
         checkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkButtonActionPerformed(evt);
             }
         });
 
-        nextButton.setText("Next");
+        nextButton.setText(bundle.getString("button_next")); // NOI18N
         nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextButtonActionPerformed(evt);
@@ -317,7 +319,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         sideSplitPane2.setTopComponent(trainerPanel);
 
-        myDictionaryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("My Dictionary"));
+        myDictionaryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("title_my_dictionary"))); // NOI18N
 
         myDictionaryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -345,7 +347,7 @@ public class MainWindow extends javax.swing.JFrame {
         myDictionaryTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(myDictionaryTable);
 
-        deleteVocButton.setText("Delete");
+        deleteVocButton.setText(bundle.getString("button_delete")); // NOI18N
         deleteVocButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteVocButtonActionPerformed(evt);
@@ -410,7 +412,7 @@ public class MainWindow extends javax.swing.JFrame {
         checkButton.setBackground(defaultButtonBackgroundColor);
         transTextField.setBackground(defaultFieldBackgroundColor);
         transTextField.setText("");
-        transTextLabel.setText("Translation");
+        transTextLabel.setText(INTERFACE_STRINGS.getString("label_translation"));
         if (myDictionaryKeys.get(0).length() != 0 && myDictionaryKeys.size() > 1) {
             int oldIndex = index;
             do {
@@ -430,7 +432,7 @@ public class MainWindow extends javax.swing.JFrame {
         int rowPos = resultTable.getSelectedRow();
         int colPos = resultTable.getSelectedColumn();
         if (rowPos == -1) {
-            JOptionPane.showMessageDialog(null, "Bitte zuerst ein Element auswählen!");
+            JOptionPane.showMessageDialog(null, MESSAGE_STRINGS.getString("select_element_first"));
             return;
         }
         // Read actual cell, can be edited
@@ -470,7 +472,7 @@ public class MainWindow extends javax.swing.JFrame {
         saveButton.setEnabled(false);
         
         // TODO implement Yes/No-Button
-        JOptionPane.showMessageDialog(null, de + " (en: " + en + ") added to trainer!");
+        JOptionPane.showMessageDialog(null, de + " (en: " + en + ") " + MESSAGE_STRINGS.getString("added_to_trainer"));
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void translateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_translateButtonActionPerformed
@@ -516,14 +518,14 @@ public class MainWindow extends javax.swing.JFrame {
         try {
             int latestVersionNo = MainServerConnector.getLatestVersionNo(name, currentVersionNo);
             if (currentVersionNo > latestVersionNo) {
-                message = "Diese Version ist noch nicht offiziell verfügbar.";
+                message = MESSAGE_STRINGS.getString("version_forward");
             } else if (currentVersionNo == latestVersionNo) {
-                message = "Die aktuellste Version ist bereits installiert.";
+                message = MESSAGE_STRINGS.getString("version_up_to_date");
             } else {
-                message = "Es ist eine neue Version verfügbar!";
+                message = MESSAGE_STRINGS.getString("version_outdated");
             }
         } catch (IOException ex) {
-            message = "Der Update-Service ist derzeit nicht verfügbar.";
+            message = MESSAGE_STRINGS.getString("out_of_service");
             System.out.println(message);
             System.out.println(ex.toString());
         }
@@ -535,7 +537,7 @@ public class MainWindow extends javax.swing.JFrame {
         int rowPos = myDictionaryTable.getSelectedRow();
         int colPos = myDictionaryTable.getSelectedColumn();
         if (rowPos == -1) {
-            JOptionPane.showMessageDialog(null, "Bitte zuerst ein Element auswählen!");
+            JOptionPane.showMessageDialog(null, MESSAGE_STRINGS.getString("select_element_first"));
             return;
         }
         // Read actual cell, can be edited
@@ -545,7 +547,7 @@ public class MainWindow extends javax.swing.JFrame {
         myDictionaryKeys.remove(de);
         myDictionaryMap.remove(de);
         savePrivateDictionary(myDictionaryFile);
-        JOptionPane.showMessageDialog(null, de + " (en: " + en + ") deleted from trainer!");
+        JOptionPane.showMessageDialog(null, de + " (en: " + en + ") " + MESSAGE_STRINGS.getString("deleted_from_trainer"));
         
     }//GEN-LAST:event_deleteVocButtonActionPerformed
 
@@ -597,6 +599,8 @@ public class MainWindow extends javax.swing.JFrame {
     private final String GERMAN = "de";
     private sourceLanguage srcLang;
     private final DefaultTableModel myDictionaryTableModel;
+    private final ResourceBundle MESSAGE_STRINGS = ResourceBundle.getBundle("messages");
+    private final ResourceBundle INTERFACE_STRINGS = ResourceBundle.getBundle("interfaces");
 
     private void loadPrivateDictionary(String filename) {
         myDictionaryMap.clear();
@@ -653,7 +657,7 @@ public class MainWindow extends javax.swing.JFrame {
                 writer.write(key + ";" + value + "\r\n");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Could not save dictionary: " + e.toString());
+            JOptionPane.showMessageDialog(null, MESSAGE_STRINGS.getString("unable_save_dictionary") + ": " + e.toString());
         }
     }
 
@@ -738,12 +742,12 @@ public class MainWindow extends javax.swing.JFrame {
                     lang = "EN";
                 }
                 saveButton.setEnabled(false);
-                JOptionPane.showMessageDialog(null, "Word " + word + " (" + lang + ") not found in " + filename);
+                JOptionPane.showMessageDialog(null, MESSAGE_STRINGS.getString("word") + " " + word + " (" + lang + ") " + MESSAGE_STRINGS.getString("not_found_in")+ " " + filename);
             }
         } catch (IOException ex) {
             nextButton.setEnabled(false);
             checkButton.setEnabled(false);
-            JOptionPane.showMessageDialog(null, "Unable to load dictionary! (" + filename + "): " + ex.toString());
+            JOptionPane.showMessageDialog(null, MESSAGE_STRINGS.getString("unable_load_dictionary") + "! (" + filename + "): " + ex.toString());
             publicDictionaryKeys.add("");
             publicDictionary.put("", "");
         }
@@ -825,7 +829,7 @@ public class MainWindow extends javax.swing.JFrame {
         }
         if (!foundWord) {
             saveButton.setEnabled(false);
-            JOptionPane.showMessageDialog(null, "Could not find " + word + " (" + srcLanguage.toUpperCase() + ")");
+            JOptionPane.showMessageDialog(null, MESSAGE_STRINGS.getString("unable_find_word") + " " + word + " (" + srcLanguage.toUpperCase() + ")");
         } else {
 
             saveButton.setEnabled(true);
@@ -875,7 +879,7 @@ public class MainWindow extends javax.swing.JFrame {
         } catch (IOException ex) {
             nextButton.setEnabled(false);
             checkButton.setEnabled(false);
-            JOptionPane.showMessageDialog(null, "Unable to load dictionary! (" + filename + "): " + ex.toString());
+            JOptionPane.showMessageDialog(null, MESSAGE_STRINGS.getString("unable_load_dictionary") + "! (" + filename + "): " + ex.toString());
             publicDictionaryKeys.add("");
             publicDictionary.put("", "");
         }
