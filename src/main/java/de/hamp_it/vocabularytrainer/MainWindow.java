@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vocabularytrainer;
+package de.hamp_it.vocabularytrainer;
 
 import de.hamp_it.EasyuseServerConnector.MainServerConnector;
 import java.awt.Color;
